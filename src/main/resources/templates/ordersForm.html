@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Form</title>
+</head>
+<body>
+<h3>Place your order now</h3><br/>
+<img th:src="@{/images/taco.png}"/>
+
+<form method="post" th:action="@{/home}" th:object="${bookOrder}">
+
+    <a th:href="@{/prepare}" id="another">Prepare another Burger</a>
+    <hr>
+    <h4>Total Orders</h4>
+    <ul>
+
+        <li th:each="burger : ${bookOrder.burgers}">
+            <span th:text="${burger.name}">Burger Name</span>
+        </li>
+    </ul>
+    <h3>Delivery process</h3>
+
+
+    <label>Name:</label>
+    <input type="text" th:field="${bookOrder.deliveryName}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryName')}"
+          th:errors="${bookOrder.deliveryName}">Name Error</span>
+    <br>
+    <label>Street address:</label>
+    <input type="text" th:field="${bookOrder.deliveryStreet}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryStreet')}"
+          th:errors="${bookOrder.deliveryStreet}">Street Error</span>
+    <br>
+    <label>City:</label>
+    <input type="text" th:field="${bookOrder.deliveryCity}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryCity')}"
+          th:errors="${bookOrder.deliveryCity}">City Error</span>
+    <br>
+    <label>State:</label>
+    <input type="text" th:field="${bookOrder.deliveryState}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryState')}"
+          th:errors="${bookOrder.deliveryState}">State Error</span>
+    <br>
+    <label>Zip code:</label>
+    <input type="text" th:field="${bookOrder.deliveryZip}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryZip')}"
+          th:errors="${bookOrder.deliveryZip}">Zip Code Error</span>
+    <br>
+    <h3>Payment process</h3>
+<!--    <label>Credit Card Number:</label>-->
+<!--    <input type="text" th:field="${bookOrder.ccNumber}"/>-->
+<!--    <span class="validationError"-->
+<!--          th:if="${#fields.hasErrors('ccNumber')}"-->
+<!--          th:errors="${bookOrder.ccNumber}" >cc number error</span>-->
+
+
+
+    <label >Credit Card: </label>
+    <input type="text" th:field="${bookOrder.ccNumber}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccNumber')}"
+          th:errors="${bookOrder.ccNumber}">CC Num Error</span>
+    <br>
+    <label>Expiration:</label>
+    <input type="text" th:field="${bookOrder.ccExpiryDate}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccExpiryDate')}"
+          th:errors="${bookOrder.ccExpiryDate}" >expiry date error</span>
+    <br>
+    <label>CVV:</label>
+    <input type="text" th:field="${bookOrder.ccCVV}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccCVV')}"
+          th:errors="${bookOrder.ccCVV}" >CVVV n error</span>
+    <br/>
+    <button type="submit">Submit Order</button>
+</form>
+</body>
+</html>
